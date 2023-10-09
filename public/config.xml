@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/build" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="v1SXYc4tpP.build" package="v1SXYc4tpP" required_version="2.3"/>
+    <access origin="*" subdomains="true"></access>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
+    <icon src="icon.png"/>
+    <!-- <tizen:metadata key="http://tizen.org/metadata/app_ui_type/base_screen_resolution" value="extensive"/> -->
+    <name>build</name>
+    <tizen:metadata key="http://samsung.com/tv/metadata/prelaunch.support" value="true"/>
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+    <tizen:profile name="tv-samsung"/>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice" />
+    <tizen:privilege name="http://developer.samsung.com/privilege/productinfo" />
+    <tizen:privilege name="http://tizen.org/privilege/package.info" />
+    <tizen:privilege name="http://tizen.org/privilege/application.info" />
+    <tizen:setting screen-orientation="landscape" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
+</widget>

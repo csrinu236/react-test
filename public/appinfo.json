@@ -1,0 +1,11 @@
+{
+  "id": "com.domain.app.calculator",
+  "version": "1.0.0",
+  "vendor": "Me",
+  "type": "web",
+  "main": "index.html",
+  "title": "calculator",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png",
+  "disableBackHistoryAPI": true
+}
