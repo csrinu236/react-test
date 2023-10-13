@@ -15,7 +15,7 @@ const Calculator = () => {
   const handleButtonClick = (value) => {
     try {
       if (value === '=') {
-        setResult(eval(expression));
+        setResult(expression);
       } else if (value === 'C') {
         setExpression('');
         setResult('');
