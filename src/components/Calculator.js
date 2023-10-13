@@ -10,7 +10,7 @@ import Button from './Button';
 const Calculator = () => {
   const [expression, setExpression] = useState('');
   const [result, setResult] = useState('');
-  const { ref, focusKey, hasFocusedChild, focusSelf, focused } = useFocusable();
+  const { ref, focusKey, focusSelf } = useFocusable();
 
   const handleButtonClick = (value) => {
     try {
