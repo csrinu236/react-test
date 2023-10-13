@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Calculator.css';
+
+import {
+  useFocusable,
+  FocusContext,
+} from '@noriginmedia/norigin-spatial-navigation';
+import Button from './Button';
 
 const Calculator = () => {
   const [expression, setExpression] = useState('');
   const [result, setResult] = useState('');
+  const { ref, focusKey, hasFocusedChild, focusSelf, focused } = useFocusable();
 
   const handleButtonClick = (value) => {
     try {
@@ -20,36 +27,43 @@ const Calculator = () => {
     }
   };
 
+  useEffect(() => {
+    focusSelf();
+    // alternatively
+  }, [focusSelf]);
+
   return (
-    <div className="calculator">
-      <div className="display">
-        <div className="expression">{expression}</div>
-        <div className="result">{result}</div>
+    <FocusContext.Provider value={focusKey}>
+      <div ref={ref} className="calculator">
+        <div className="display">
+          <div className="expression">{expression}</div>
+          <div className="result">{result}</div>
+        </div>
+        <div className="buttons">
+          <Button handleButtonClick={handleButtonClick}>7</Button>
+          <Button handleButtonClick={handleButtonClick}>8</Button>
+          <Button handleButtonClick={handleButtonClick}>9</Button>
+          <Button handleButtonClick={handleButtonClick}>/</Button>
+
+          <Button handleButtonClick={handleButtonClick}>4</Button>
+          <Button handleButtonClick={handleButtonClick}>5</Button>
+          <Button handleButtonClick={handleButtonClick}>6</Button>
+          <Button handleButtonClick={handleButtonClick}>*</Button>
+
+          <Button handleButtonClick={handleButtonClick}>1</Button>
+          <Button handleButtonClick={handleButtonClick}>2</Button>
+          <Button handleButtonClick={handleButtonClick}>3</Button>
+          <Button handleButtonClick={handleButtonClick}>-</Button>
+
+          <Button handleButtonClick={handleButtonClick}>0</Button>
+          <Button handleButtonClick={handleButtonClick}>.</Button>
+          <Button handleButtonClick={handleButtonClick}>=</Button>
+          <Button handleButtonClick={handleButtonClick}>+</Button>
+
+          <Button handleButtonClick={handleButtonClick}>C</Button>
+        </div>
       </div>
-      <div className="buttons">
-        <button onClick={() => handleButtonClick('7')}>7</button>
-        <button onClick={() => handleButtonClick('8')}>8</button>
-        <button onClick={() => handleButtonClick('9')}>9</button>
-        <button onClick={() => handleButtonClick('/')}>/</button>
-
-        <button onClick={() => handleButtonClick('4')}>4</button>
-        <button onClick={() => handleButtonClick('5')}>5</button>
-        <button onClick={() => handleButtonClick('6')}>6</button>
-        <button onClick={() => handleButtonClick('*')}>*</button>
-
-        <button onClick={() => handleButtonClick('1')}>1</button>
-        <button onClick={() => handleButtonClick('2')}>2</button>
-        <button onClick={() => handleButtonClick('3')}>3</button>
-        <button onClick={() => handleButtonClick('-')}>-</button>
-
-        <button onClick={() => handleButtonClick('0')}>0</button>
-        <button onClick={() => handleButtonClick('.')}>.</button>
-        <button onClick={() => handleButtonClick('=')}>=</button>
-        <button onClick={() => handleButtonClick('+')}>+</button>
-
-        <button onClick={() => handleButtonClick('C')}>C</button>
-      </div>
-    </div>
+    </FocusContext.Provider>
   );
 };
 
