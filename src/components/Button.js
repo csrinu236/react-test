@@ -8,7 +8,11 @@ function Button({ children, handleButtonClick }) {
   });
 
   return (
-    <button ref={ref} className={focused ? 'button-focused' : 'button'}>
+    <button
+      onClick={() => handleButtonClick(children)}
+      ref={ref}
+      className={focused ? 'button-focused' : 'button'}
+    >
       {children}
     </button>
   );
