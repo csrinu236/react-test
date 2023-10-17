@@ -50,25 +50,25 @@ function App() {
     document.addEventListener('webOSRelaunch', function (e) {
       console.log('<=========webOSRelaunch=========>', e);
       const {
-        bubbles,
-        cancelable,
-        currentTarget,
-        composed,
-        defaultPrevented,
+        // bubbles,
+        // cancelable,
+        // currentTarget,
+        // composed,
+        // defaultPrevented,
         detail,
-        eventPhase,
+        // eventPhase,
       } = e;
       const logs = {
         launchParams,
         location: window.location,
         e,
-        bubbles,
-        cancelable,
-        currentTarget,
-        composed,
-        defaultPrevented,
+        // bubbles,
+        // cancelable,
+        // currentTarget,
+        // composed,
+        // defaultPrevented,
         detail,
-        eventPhase,
+        // eventPhase,
       };
       setValue(logs);
       // Do something
