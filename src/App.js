@@ -5,7 +5,11 @@ import Calculator from './components/Calculator';
 function App() {
   console.log({ window });
   const protocol = window.location.protocol;
+  const href = window.location.href;
+  const location = window.location;
   console.log('<===protocol:', protocol);
+  console.log('<===href:', href);
+  console.log('<===location:', location);
 
   useEffect(() => {
     document.addEventListener('webOSLaunch', function (e) {
