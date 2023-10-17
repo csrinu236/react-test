@@ -16,6 +16,9 @@ function App() {
     console.log('<====launchParams===>', { launchParams });
 
     document.addEventListener('webOSLaunch', function (e) {
+      const launchParams = window.webOSDev.launchParams();
+      console.log('<====Inside launchParams===>', { launchParams });
+
       // Do something
       console.log('<=========webOSLaunch=========>', e);
     });
