@@ -16,7 +16,7 @@ const Calculator = () => {
     try {
       if (value === '=') {
         // setResult(eval(expression));
-        process.env.NODE_ENV === 'development' && setResult(eval(expression));
+        // process.env.NODE_ENV === 'development' && setResult(eval(expression));
       } else if (value === 'C') {
         setExpression('');
         setResult('');
