@@ -24,6 +24,7 @@ function App() {
       const logs = {
         launchParams,
         location: window.location,
+        e,
       };
       setValue(logs);
 
@@ -35,6 +36,7 @@ function App() {
       const logs = {
         launchParams,
         location: window.location,
+        e,
       };
       setValue(logs);
       // Do something
