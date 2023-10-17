@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 
 import { init } from '@noriginmedia/norigin-spatial-navigation';
+import { BrowserRouter } from 'react-router-dom';
 
 init({
   // options
@@ -12,7 +13,9 @@ init({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </BrowserRouter>
 );

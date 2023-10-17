@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Calculator from './components/Calculator';
+import { Route, Routes } from 'react-router-dom';
+import About from './components/About';
 
 function App() {
   const [value, setValue] = useState({});
@@ -61,6 +63,9 @@ function App() {
       <h1>Simple Calculator App</h1>
       <h4 style={{ width: '500px' }}>{JSON.stringify(value)}</h4>
       <Calculator></Calculator>
+      <Routes>
+        <Route path="/about" element={<About />} />
+      </Routes>
     </div>
   );
 }
