@@ -3,9 +3,11 @@ import './App.css';
 import Calculator from './components/Calculator';
 import { Route, Routes } from 'react-router-dom';
 import About from './components/About';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   const [value, setValue] = useState({});
+  const navigate = useNavigate();
   console.log({ window });
   const protocol = window.location.protocol;
   const href = window.location.href;
@@ -34,22 +36,6 @@ function App() {
         launchParams,
         location: window.location,
         e,
-        bubbles,
-        cancelable,
-        currentTarget,
-        composed,
-        defaultPrevented,
-        detail,
-        eventPhase,
-      };
-      setValue(logs);
-
-      // Do something
-      console.log('<=========webOSLaunch=========>', e);
-    });
-    document.addEventListener('webOSRelaunch', function (e) {
-      console.log('<=========webOSRelaunch=========>', e);
-      const {
         // bubbles,
         // cancelable,
         // currentTarget,
@@ -57,6 +43,24 @@ function App() {
         // defaultPrevented,
         detail,
         // eventPhase,
+      };
+      setValue(logs);
+
+      navigate('/about');
+
+      // Do something
+      console.log('<=========webOSLaunch=========>', e);
+    });
+    document.addEventListener('webOSRelaunch', function (e) {
+      console.log('<=========webOSRelaunch=========>', e);
+      const {
+        bubbles,
+        cancelable,
+        currentTarget,
+        composed,
+        defaultPrevented,
+        detail,
+        eventPhase,
       } = e;
       const logs = {
         launchParams,
@@ -72,6 +76,7 @@ function App() {
       };
       setValue(logs);
       // Do something
+      navigate('/about');
     });
   }, []);
 
@@ -94,7 +99,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Simple Calculator App</h1>
+      <h1>Simple Calculator App123</h1>
       <h4 style={{ width: '500px' }}>{JSON.stringify(value)}</h4>
       <Calculator></Calculator>
       <Routes>
