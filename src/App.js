@@ -21,10 +21,26 @@ function App() {
     document.addEventListener('webOSLaunch', function (e) {
       const launchParams = window.webOSDev.launchParams();
       console.log('<====Inside launchParams===>', launchParams);
+      const {
+        bubbles,
+        cancelable,
+        currentTarget,
+        composed,
+        defaultPrevented,
+        detail,
+        eventPhase,
+      } = e;
       const logs = {
         launchParams,
         location: window.location,
         e,
+        bubbles,
+        cancelable,
+        currentTarget,
+        composed,
+        defaultPrevented,
+        detail,
+        eventPhase,
       };
       setValue(logs);
 
@@ -33,10 +49,26 @@ function App() {
     });
     document.addEventListener('webOSRelaunch', function (e) {
       console.log('<=========webOSRelaunch=========>', e);
+      const {
+        bubbles,
+        cancelable,
+        currentTarget,
+        composed,
+        defaultPrevented,
+        detail,
+        eventPhase,
+      } = e;
       const logs = {
         launchParams,
         location: window.location,
         e,
+        bubbles,
+        cancelable,
+        currentTarget,
+        composed,
+        defaultPrevented,
+        detail,
+        eventPhase,
       };
       setValue(logs);
       // Do something
