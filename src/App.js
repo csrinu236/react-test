@@ -12,6 +12,9 @@ function App() {
   console.log('<===location:', location);
 
   useEffect(() => {
+    const params = window.webOSDev.launchParams();
+    console.log({ params });
+
     document.addEventListener('webOSLaunch', function (e) {
       // Do something
       console.log('<=========webOSLaunch=========>', e);
