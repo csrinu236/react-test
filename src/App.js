@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Calculator from './components/Calculator';
 
 function App() {
+  const [value, setValue] = useState({});
   console.log({ window });
   const protocol = window.location.protocol;
   const href = window.location.href;
@@ -17,14 +18,23 @@ function App() {
 
     document.addEventListener('webOSLaunch', function (e) {
       const launchParams = window.webOSDev.launchParams();
-      console.log('<====Inside launchParams===>', { launchParams });
+      console.log('<====Inside launchParams===>', launchParams);
+      const logs = {
+        launchParams,
+        location: window.location,
+      };
+      setValue(logs);
 
       // Do something
       console.log('<=========webOSLaunch=========>', e);
     });
     document.addEventListener('webOSRelaunch', function (e) {
       console.log('<=========webOSRelaunch=========>', e);
-
+      const logs = {
+        launchParams,
+        location: window.location,
+      };
+      setValue(logs);
       // Do something
     });
   }, []);
@@ -49,6 +59,7 @@ function App() {
   return (
     <div className="App">
       <h1>Simple Calculator App</h1>
+      <h4 style={{ width: '500px' }}>{JSON.stringify(value)}</h4>
       <Calculator></Calculator>
     </div>
   );
