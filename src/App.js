@@ -79,7 +79,7 @@ function App() {
       // Do something
       navigate(`/${launchParams.target}`);
     });
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     // Parse the query parameters from the URL
