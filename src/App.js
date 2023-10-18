@@ -4,6 +4,7 @@ import Calculator from './components/Calculator';
 import { Route, Routes } from 'react-router-dom';
 import About from './components/About';
 import { useNavigate } from 'react-router-dom';
+import Contact from './components/Contact';
 
 function App() {
   const [value, setValue] = useState({});
@@ -24,13 +25,13 @@ function App() {
       const launchParams = window.webOSDev.launchParams();
       console.log('<====Inside launchParams===>', launchParams);
       const {
-        bubbles,
-        cancelable,
-        currentTarget,
-        composed,
-        defaultPrevented,
+        // bubbles,
+        // cancelable,
+        // currentTarget,
+        // composed,
+        // defaultPrevented,
         detail,
-        eventPhase,
+        // eventPhase,
       } = e;
       const logs = {
         launchParams,
@@ -46,7 +47,7 @@ function App() {
       };
       setValue(logs);
 
-      navigate('/about');
+      navigate(`/${launchParams.target}`);
 
       // Do something
       console.log('<=========webOSLaunch=========>', e);
@@ -54,13 +55,13 @@ function App() {
     document.addEventListener('webOSRelaunch', function (e) {
       console.log('<=========webOSRelaunch=========>', e);
       const {
-        bubbles,
-        cancelable,
-        currentTarget,
-        composed,
-        defaultPrevented,
+        // bubbles,
+        // cancelable,
+        // currentTarget,
+        // composed,
+        // defaultPrevented,
         detail,
-        eventPhase,
+        // eventPhase,
       } = e;
       const logs = {
         launchParams,
@@ -76,7 +77,7 @@ function App() {
       };
       setValue(logs);
       // Do something
-      navigate('/about');
+      navigate(`/${launchParams.target}`);
     });
   }, []);
 
@@ -104,6 +105,7 @@ function App() {
       <Calculator></Calculator>
       <Routes>
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>
   );
