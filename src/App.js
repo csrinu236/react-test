@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import About from './components/About';
 import { useNavigate } from 'react-router-dom';
 import Contact from './components/Contact';
+import Settings from './components/Settings';
 
 function App() {
   const [value, setValue] = useState({});
@@ -46,12 +47,11 @@ function App() {
         // eventPhase,
       };
       setValue(logs);
-
       navigate(`/${launchParams.target}`);
-
       // Do something
       console.log('<=========webOSLaunch=========>', e);
     });
+
     document.addEventListener('webOSRelaunch', function (e) {
       console.log('<=========webOSRelaunch=========>', e);
       const {
@@ -106,6 +106,7 @@ function App() {
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </div>
   );
