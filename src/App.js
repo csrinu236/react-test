@@ -18,6 +18,8 @@ function App() {
   console.log('<===href:', href);
   console.log('<===location:', location);
 
+  console.log('<===tizen===>', { tizen });
+
   useEffect(() => {
     const launchParams = window.webOSDev.launchParams();
     console.log('<====launchParams===>', { launchParams });
