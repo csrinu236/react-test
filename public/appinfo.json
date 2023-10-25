@@ -1,10 +1,10 @@
 {
-  "id": "build.calculator.v1",
+  "id": "basic.calculator.v1",
   "version": "1.0.0",
   "vendor": "Me",
   "type": "web",
   "main": "index.html",
-  "title": "build calculator",
+  "title": "Basic Calculator",
   "icon": "icon.png",
   "largeIcon": "largeIcon.png",
   "disableBackHistoryAPI": true

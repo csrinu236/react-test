@@ -1,30 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import './Calculator.css';
+import React, { useEffect, useState } from "react";
+import "./Calculator.css";
 
-import {
-  useFocusable,
-  FocusContext,
-} from '@noriginmedia/norigin-spatial-navigation';
-import Button from './Button';
+import { useFocusable, FocusContext } from "@noriginmedia/norigin-spatial-navigation";
+import Button from "./Button";
 
 const Calculator = () => {
-  const [expression, setExpression] = useState('');
-  const [result, setResult] = useState('');
+  const [expression, setExpression] = useState("");
+  const [result, setResult] = useState("");
   const { ref, focusKey, focusSelf } = useFocusable();
 
   const handleButtonClick = (value) => {
     try {
-      if (value === '=') {
-        // setResult(eval(expression));
+      if (value === "=") {
+        setResult(eval(expression));
         // process.env.NODE_ENV === 'development' && setResult(eval(expression));
-      } else if (value === 'C') {
-        setExpression('');
-        setResult('');
+      } else if (value === "C") {
+        setExpression("");
+        setResult("");
       } else {
         setExpression(expression + value);
       }
     } catch (error) {
-      setResult('Error');
+      setResult("Error");
     }
   };
 

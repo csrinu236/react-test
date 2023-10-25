@@ -71,3 +71,18 @@ button:hover {
 button:focus {
   outline: 2px solid #fff;
 }
+
+.buttons-loader {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.buttons-loader div {
+  padding: 10px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #444; /* Button background color */
+  color: #fff; /* Button text color */
+}
