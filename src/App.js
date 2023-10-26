@@ -27,7 +27,7 @@ function App() {
           console.log("exit app webOS");
           window.close();
         } else if (navigator.userAgent.includes("Tizen")) {
-          // console.log("exit app Tizen");
+          console.log("exit app Tizen");
           // try {
           //   window?.tizen?.application?.getCurrentApplication().exit();
           // } catch (error) {
