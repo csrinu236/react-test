@@ -51,13 +51,13 @@ function App() {
       console.log("<====tizen====>", { tizen: window.tizen });
       var app = window?.tizen?.application.getCurrentApplication();
 
-      var watchId = app.addEventListener({ appId: "y2JqUKwCOh.BasicDemo", name: "first_app_event_1" }, function (event, data) {
+      var watchId = app.addEventListener({ appId: "yvwRDoqjgX.BasicDemoSameCertificate", name: "first_app_event_1" }, function (event, data) {
         /* Data from first app must be received here */
         setValue(JSON.stringify(data));
       });
       console.log(watchId);
     } catch (error) {
-      console.log(error);
+      setValue(JSON.stringify(error));
     }
 
     document.addEventListener("webOSLaunch", function (e) {
