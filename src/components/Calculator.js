@@ -12,7 +12,7 @@ const Calculator = () => {
   const handleButtonClick = (value) => {
     try {
       if (value === "=") {
-        // setResult(eval(expression));
+        setResult(eval(expression));
         // process.env.NODE_ENV === 'development' && setResult(eval(expression));
       } else if (value === "C") {
         setExpression("");

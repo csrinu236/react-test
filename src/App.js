@@ -27,12 +27,13 @@ function App() {
           console.log("exit app webOS");
           window.close();
         } else if (navigator.userAgent.includes("Tizen")) {
-          console.log("exit app Tizen");
-          try {
-            window?.tizen?.application?.getCurrentApplication().exit();
-          } catch (error) {
-            console.log("error -", error);
-          }
+          // console.log("exit app Tizen");
+          // try {
+          //   window?.tizen?.application?.getCurrentApplication().exit();
+          // } catch (error) {
+          //   console.log("error -", error);
+          // }
+          window.close();
         }
       }
     };
@@ -51,7 +52,7 @@ function App() {
       console.log("<====tizen====>", { tizen: window.tizen });
       var app = window?.tizen?.application.getCurrentApplication();
 
-      var watchId = app.addEventListener({ appId: "yvwRDoqjgX.BasicDemoSameCertificate", name: "first_app_event_1" }, function (event, data) {
+      var watchId = app.addEventListener({ appId: "y2JqUKwCOh.BasicDemo", name: "first_app_event_1" }, function (event, data) {
         /* Data from first app must be received here */
         setValue(JSON.stringify(data));
       });
