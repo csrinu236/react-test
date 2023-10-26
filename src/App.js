@@ -6,7 +6,7 @@ import About from "./components/About";
 import { useNavigate } from "react-router-dom";
 import Contact from "./components/Contact";
 import Settings from "./components/Settings";
-import CalculatorLoader from "./components/CalculatorLoader";
+// import CalculatorLoader from "./components/CalculatorLoader";
 
 function App() {
   const [value, setValue] = useState({});
@@ -55,6 +55,7 @@ function App() {
         /* Data from first app must be received here */
         setValue(JSON.stringify(data));
       });
+      console.log(watchId);
     } catch (error) {
       console.log(error);
     }
@@ -164,7 +165,7 @@ function App() {
   return (
     <div className="App">
       <h1>Simple Calculator App</h1>
-      {/* <h4 style={{ width: "500px" }}>{JSON.stringify(value)}</h4> */}
+      <h4 style={{ width: "500px" }}>{JSON.stringify(value)}</h4>
       <Calculator></Calculator>
       {/* <CalculatorLoader></CalculatorLoader> */}
       <Routes>
