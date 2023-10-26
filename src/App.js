@@ -63,26 +63,12 @@ function App() {
     document.addEventListener("webOSLaunch", function (e) {
       const launchParams = window.webOSDev.launchParams();
       console.log("<====Inside LaunchParams===>", launchParams);
-      const {
-        // bubbles,
-        // cancelable,
-        // currentTarget,
-        // composed,
-        // defaultPrevented,
-        detail,
-        // eventPhase,
-      } = e;
+      const { detail } = e;
       const logs = {
         launchParams,
         location: window.location,
         e,
-        // bubbles,
-        // cancelable,
-        // currentTarget,
-        // composed,
-        // defaultPrevented,
         detail,
-        // eventPhase,
       };
       setValue(logs);
       navigate(`/${launchParams.target}`);
@@ -92,75 +78,18 @@ function App() {
 
     document.addEventListener("webOSRelaunch", function (e) {
       console.log("<=========webOSRelaunch=========>", e);
-      const {
-        // bubbles,
-        // cancelable,
-        // currentTarget,
-        // composed,
-        // defaultPrevented,
-        detail,
-        // eventPhase,
-      } = e;
+      const { detail } = e;
       const logs = {
         launchParams,
         location: window.location,
         e,
-        // bubbles,
-        // cancelable,
-        // currentTarget,
-        // composed,
-        // defaultPrevented,
         detail,
-        // eventPhase,
       };
       setValue(logs);
       // Do something
       navigate(`/${launchParams.target}`);
     });
   }, [navigate]);
-
-  // useEffect(() => {
-  //   let appInfo1, appInfo2;
-  //   try {
-  //     appInfo1 = window?.tizen?.application?.getAppInfo(
-  //       'org.tizen.application'
-  //     );
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-
-  //   try {
-  //     appInfo2 = window?.tizen?.application?.getCurrentApplication();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-
-  //   setValue({ appInfo1, appInfo2 });
-
-  //   document.addEventListener('keydown', function (e) {
-  //     switch (e.keyCode) {
-  //       case 37: //LEFT arrow
-  //         console.log('<===left arrow clicked===>');
-  //       case 38: //UP arrow
-  //         console.log('<====UP arrow button clicked====>');
-  //       case 39: //RIGHT arrow
-  //         console.log('<=====right btn clicked====>');
-  //       case 40: //DOWN arrow
-  //         console.log('<=====down btn clicked====>');
-  //       case 13: //OK button
-  //         break;
-  //       case 10009: //RETURN button
-  //         console.log('<=====return btn clicked====>');
-  //         window?.tizen?.application?.getCurrentApplication()?.exit();
-  //         break;
-  //       default:
-  //         console.log('Key code : ' + e.keyCode);
-  //         break;
-  //     }
-  //   });
-
-  //   // Update state with the query parameters
-  // }, []);
 
   return (
     <div className="App">
