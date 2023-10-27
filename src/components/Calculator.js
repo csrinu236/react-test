@@ -59,6 +59,7 @@ const Calculator = () => {
           <Button handleButtonClick={handleButtonClick}>+</Button>
 
           <Button handleButtonClick={handleButtonClick}>C</Button>
+          <Button>Launch</Button>
         </div>
       </div>
     </FocusContext.Provider>
