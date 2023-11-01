@@ -10,6 +10,7 @@ import Settings from "./components/Settings";
 
 function App() {
   const [value, setValue] = useState({});
+  const [value2, setValue2] = useState({});
   const navigate = useNavigate();
   console.log({ window });
   const protocol = window.location.protocol;
@@ -18,6 +19,22 @@ function App() {
   console.log("<===protocol:", protocol);
   console.log("<===href:", href);
   console.log("<===location:", location);
+
+  useEffect(() => {
+    const getDataFromPostMessage = (event) => {
+      if (event.origin === "https://sreenu-calculator.netlify.app/") {
+        // Verify that the message is coming from abc.com
+        setValue2(event.data);
+      }
+      setValue2(event.data);
+    };
+
+    window.addEventListener("message", getDataFromPostMessage);
+
+    return () => {
+      window.removeEventListener("message", getDataFromPostMessage);
+    };
+  }, []);
 
   useEffect(() => {
     const keyDownEventListener = (e) => {
@@ -96,6 +113,7 @@ function App() {
     <div className="App">
       <h1>Simple Calculator App</h1>
       <h4 style={{ width: "500px" }}>{JSON.stringify(value)}</h4>
+      <h4 style={{ width: "500px" }}>{JSON.stringify(value2)}</h4>
       <Calculator></Calculator>
       {/* <CalculatorLoader></CalculatorLoader> */}
       <Routes>

@@ -1,0 +1,10 @@
+Invalid content was found starting with element 'tizen:background-category'. One of '{"http://www.w3.org/ns/widgets":name, 
+ "http://www.w3.org/ns/widgets":description, "http://www.w3.org/ns/widgets":icon, "http://www.w3.org/ns/widgets":author, "http://
+ www.w3.org/ns/widgets":license, "http://www.w3.org/ns/widgets":content, "http://www.w3.org/ns/widgets":feature, "http://
+ www.w3.org/ns/widgets":preference, "http://www.w3.org/ns/widgets":service, "http://tizen.org/ns/widgets":app-control, "http://
+ tizen.org/ns/widgets":setting, "http://tizen.org/ns/widgets":service, "http://tizen.org/ns/widgets":application, "http://tizen.org/ns/
+ widgets":content, "http://tizen.org/ns/widgets":privilege, "http://tizen.org/ns/widgets":content-security-policy, "http://tizen.org/ns/
+ widgets":content-security-policy-report-only, "http://tizen.org/ns/widgets":allow-navigation, "http://tizen.org/ns/widgets":app-
+ widget, "http://tizen.org/ns/widgets":account, "http://tizen.org/ns/widgets":metadata, "http://tizen.org/ns/widgets":splash, "http://
+ tizen.org/ns/widgets":category, "http://tizen.org/ns/widgets":profile, "http://tizen.org/ns/widgets":video_splash_screen, "http://
+ www.w3.org/ns/widgets":access, "http://www.w3.org/ns/widgets":required-services}' is expected.
