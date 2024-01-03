@@ -12,28 +12,77 @@ function App() {
   const [value, setValue] = useState({});
   const [value2, setValue2] = useState({});
   const navigate = useNavigate();
-  console.log({ window });
+  // console.log({ window });
   const protocol = window.location.protocol;
   const href = window.location.href;
   const location = window.location;
-  console.log("<===protocol:", protocol);
-  console.log("<===href:", href);
-  console.log("<===location:", location);
+  // console.log("<===protocol:", protocol);
+  // console.log("<===href:", href);
+  // console.log("<===location:", location);
+
+  const grammar = "#JSGF V1.0; grammar names; public <name> = JioCinema | JIO | jiocinema ;";
+
+  window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  const [recognition, setrecognition] = useState(new window.SpeechRecognition());
+  const [isListening, setisListening] = useState(false);
+  // const recognition = new window.SpeechRecognition();
+
+  recognition.interimResults = false;
+  recognition.lang = "en-IN";
+  recognition.continuous = false;
+  // recognition.maxAlternatives = 1;
+
+  window.SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
+
+  const speechRecognitionList = new window.SpeechGrammarList();
+  speechRecognitionList.addFromString(grammar, 1);
+  recognition.grammars = speechRecognitionList;
 
   useEffect(() => {
-    const getDataFromPostMessage = (event) => {
-      if (event.origin === "https://sreenu-calculator.netlify.app/") {
-        // Verify that the message is coming from abc.com
-        setValue2(event.data);
-      }
-      setValue2(event.data);
+    const listener = (event) => {
+      const color = event.results[0][0].transcript;
+      console.log(color);
+      setValue2(color);
+      setisListening(false);
     };
 
-    window.addEventListener("message", getDataFromPostMessage);
+    recognition.addEventListener("result", listener);
 
-    return () => {
-      window.removeEventListener("message", getDataFromPostMessage);
-    };
+    recognition.addEventListener("audioend", () => {
+      console.log("Audio capturing ended");
+      setisListening(false);
+    });
+
+    recognition.addEventListener("audiostart", () => {
+      console.log("Audio capturing started");
+    });
+
+    recognition.addEventListener("end", () => {
+      console.log("Speech recognition service disconnected");
+    });
+
+    recognition.addEventListener("nomatch", () => {
+      console.error("Speech not recognized");
+    });
+
+    recognition.addEventListener("soundstart", () => {
+      console.log("Some sound is being received");
+    });
+
+    recognition.addEventListener("soundend", (event) => {
+      console.log("Sound has stopped being received");
+      setisListening(false);
+    });
+
+    recognition.addEventListener("speechstart", () => {
+      console.log("Speech has been detected");
+    });
+
+    recognition.addEventListener("speechend", () => {
+      console.log("Speech has stopped being detected");
+      setisListening(false);
+    });
   }, []);
 
   useEffect(() => {
@@ -45,13 +94,114 @@ function App() {
           window.close();
         } else if (navigator.userAgent.includes("Tizen")) {
           console.log("exit app Tizen====> ROhit Sharma");
-          // try {
-          //   window?.tizen?.application?.getCurrentApplication().exit();
-          // } catch (error) {
-          //   console.log("error -", error);
-          // }
-          window.close();
+          try {
+            window?.tizen?.application?.getCurrentApplication().exit();
+          } catch (error) {
+            console.log("error -", error);
+          }
         }
+      }
+      switch (keyCode) {
+        case 37: //LEFT arrow
+          console.log("Left arrow clicked =======>");
+
+          // var request = window.webOS.service.request("luna://com.webos.service.applicationmanager", {
+          //   method: "launch",
+          //   parameters: {
+          //     id: "amazon",
+          //   },
+          //   onSuccess: function (inResponse) {
+          //     console.log("The app is launched");
+          //     // To-Do something
+          //   },
+          //   onFailure: function (inError) {
+          //     console.log("Failed to to do the operation");
+          //     console.log("[" + inError.errorCode + "]: " + inError.errorText);
+          //     // To-Do something
+          //     return;
+          //   },
+          // });
+          var request = window.webOS.service.request("luna://com.webos.service.location", {
+            method: "getAllLocationHandlers",
+            parameters: {},
+            onSuccess: function (inResponse) {
+              console.log("The app is launched", inResponse);
+              // To-Do something
+            },
+            onFailure: function (inError) {
+              console.log("Failed to to do the operation");
+              console.log("[" + inError.errorCode + "]: " + inError.errorText);
+              // To-Do something
+              return;
+            },
+          });
+
+          break;
+        case 38: //UP arrow
+          console.log("UP arrow clicked =======>");
+
+          var request = window.webOS.service.request("luna://com.palm.activitymanager", {
+            method: "adopt",
+            parameters: {
+              activityId: 90,
+              wait: true,
+              subscribe: true,
+              detailedEvents: false,
+            },
+            onSuccess: function (inResponse) {
+              if (inResponse.event == "orphan") {
+                console.log("The activity has been adopted to current app or service");
+                // To-Do something
+              } else if (inResponse.adopted) {
+                console.log("The activity has been transferred from current app or service to another adopter");
+                // To-Do something
+              } else if (!inResponse.adopted) {
+                console.log("The succeeded to request a activity adoption and start subscription");
+              }
+            },
+            onFailure: function (inError) {
+              console.log("Failed to request a activity adoption");
+              console.log("[" + inError.errorCode + "]: " + inError.errorText);
+              // To-Do something
+              return;
+            },
+          });
+          break;
+        case 39: //RIGHT arrow
+          console.log("Right arrow clicked =======>");
+          var request = window.webOS.service.request("luna://com.webos.service.wifi", {
+            method: "getCountryCode",
+            parameters: {},
+            onSuccess: function (inResponse) {
+              console.log("The app is launched", inResponse);
+              // To-Do something
+            },
+            onFailure: function (inError) {
+              console.log("Failed to to do the operation");
+              console.log("[" + inError.errorCode + "]: " + inError.errorText);
+              // To-Do something
+              return;
+            },
+          });
+          break;
+        case 40: //DOWN arrow
+          if (isListening) return;
+          setisListening(true);
+          recognition.start();
+          break;
+        case 48: //Zero Btn
+          if (isListening) return;
+          setisListening(true);
+          recognition.start();
+          break;
+        case 13: //OK button
+          break;
+        case 10009: //RETURN button
+          window?.tizen.application.getCurrentApplication().exit();
+          break;
+        default:
+          console.log("Key code : " + e.keyCode);
+          break;
       }
     };
 
@@ -59,14 +209,14 @@ function App() {
     return () => {
       window.removeEventListener("keydown", keyDownEventListener);
     };
-  }, []);
+  }, [isListening]);
 
   useEffect(() => {
     const launchParams = window.webOSDev.launchParams();
-    console.log("<====launchParams===>", { launchParams });
+    // console.log("<====launchParams===>", { launchParams });
 
     try {
-      console.log("<====tizen====>", { tizen: window.tizen });
+      // console.log("<====tizen====>", { tizen: window.tizen });
       var app = window?.tizen?.application.getCurrentApplication();
 
       var watchId = app.addEventListener({ appId: "y2JqUKwCOh.BasicDemo", name: "first_app_event_1" }, function (event, data) {
@@ -91,11 +241,11 @@ function App() {
       setValue(logs);
       navigate(`/${launchParams.target}`);
       // Do something
-      console.log("<=========webOSLaunch=========>", e);
+      // console.log("<=========webOSLaunch=========>", e);
     });
 
     document.addEventListener("webOSRelaunch", function (e) {
-      console.log("<=========webOSRelaunch=========>", e);
+      // console.log("<=========webOSRelaunch=========>", e);
       const { detail } = e;
       const logs = {
         launchParams,
@@ -112,10 +262,9 @@ function App() {
   return (
     <div className="App">
       <h1>Simple Calculator App</h1>
-      <h4 style={{ width: "500px" }}>{JSON.stringify(value)}</h4>
-      <h4 style={{ width: "500px" }}>{JSON.stringify(value2)}</h4>
+      <h1 style={{ width: "500px" }}>{JSON.stringify(value)}</h1>
+      <h1 style={{ width: "500px" }}>{JSON.stringify(value2)}</h1>
       <Calculator></Calculator>
-      {/* <CalculatorLoader></CalculatorLoader> */}
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
